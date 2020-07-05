@@ -1,26 +1,23 @@
 <% if @article.errors.any? %>
-		<h2>The following errors prevent the artice from being saved</h2>
-		<ul>
-			<% @article.errors.full_messages.each do |msg| %>
-			<li><%= msg %></li>
-		<% end %>
-	</ul>
+    <h2>The following errors prevent the artice from being saved</h2>
+    <ul>
+      <% @article.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
 <% end %>
-	
 <%= form_with(model: @article, local: true) do |f| %>
-
-	<p>
-		<%= f.label :title %><br>
-		<%= f.text_field :title %>
-	</p>
-
-	<p>
-		<%= f.text_area :description %><br/>
-		
-	</p>
-	
-	<p>
-		<%= f.submit %>
-	</p>
-
+  <p>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.text_area :description %><br/>
+  </p>
+  <p>
+    <%= f.select :user_id, User.all.collect {|u| [ u.username, u.id ] }, { prompt: 'Select User' }, required: true %><br/>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
 <% end %>

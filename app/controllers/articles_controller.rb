@@ -1,10 +1,5 @@
-
-
-
 class ArticlesController < ApplicationController
 	before_action :set_article, only: [:show, :edit, :update, :destroy]
-
-
 
 	def show
 
@@ -44,7 +39,8 @@ class ArticlesController < ApplicationController
 
 	def destroy
 		@article.destroy
-		redirect_to articles_path
+		redirect_to article
+		_path
 	end
 
 	private
@@ -54,6 +50,6 @@ class ArticlesController < ApplicationController
 	end
 
 	def article_params
-		params.require(:article).permit(:title, :description, :user)
+		params.require(:article).permit(:title, :description, :user_id)
 	end
 end
